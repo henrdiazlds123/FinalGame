@@ -5,6 +5,9 @@
  */
 package finalgame;
 
+import static finalgame.BoardView.createPattern;
+import static finalgame.BoardView.printPattern;
+import static finalgame.Winner.checkWinner;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -26,9 +29,88 @@ public class Game implements java.io.Serializable {
     boolean valid = true;
 
     Game() {
-        
-    }
 
+        String[][] f = createPattern();
+
+        boolean loop = true;
+           int count = 0;
+        
+        printPattern(f);
+        
+        while (loop) {
+
+            if (count % 2 == 0) {
+                Player.PlayerMove("RED","R",f);             
+            } else {
+                Player.PlayerMove("BLUE","B",f);             
+            }
+            count++;                 //game counter
+            
+            /*Tie Game tester
+            if(count == 42){
+                if(checkWinner(f) == null){
+                    System.out.println("Game tie");
+                    tieCounter++;
+                    break;
+                }
+
+            }*/
+                
+            printPattern(f);
+
+            if (checkWinner(f) != null) {
+                switch (checkWinner(f)) {
+                    case "R":
+                        System.out.println("The RED player won.\n\n");
+                        gamesWonR++;
+                        Sound.stopMusic();
+                        break;
+                    case "B":
+                        System.out.println("The BLUE player won.\n\n");
+                        gamesWonB++;
+                        Sound.stopMusic();
+                        break;
+                }
+                //if someone won you need choose what to do.
+                gamesPlayed++;
+                
+                while (valid) {
+                    //user entry
+                    Scanner input = new Scanner(System.in);
+                    System.out.println("Do you want to play another game?");
+                    System.out.println("1. Yes\t2 .No");
+                    choose = input.nextLine();
+
+                    //validating user entry
+                    if (choose == null || choose.length() < 1) {
+                        System.out.println(invalidEntry);
+                    } else {
+                        if (choose.equals("1") || choose.equals("2")) {
+                            break;
+                        } else {
+
+                            System.out.println(invalidEntry);
+                        }
+                    }
+                }
+
+                //option 1
+                switch (choose) {
+                    case "1":
+                        BoardView.clearBoard();
+                        
+                        //option 2  
+                        break;
+                    case "2":
+                        loop = false;
+                        System.out.println("juegos Jugados: " + gamesPlayed);
+                        System.out.println("red: " + gamesWonR);
+                        System.out.println("blue: " + gamesWonB);
+                        System.exit(0);
+                }
+            }
+        }
+    }
 
     public int getGamesPlayed() {
         return gamesPlayed;
