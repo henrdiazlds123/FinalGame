@@ -15,11 +15,6 @@ import java.util.Scanner;
 public class Interfase {
 
     String playerName;
-    String welcomeGretting = "This is the fabulous game \"Four in a Line\".\n\n"
-            + "You will be playing against the computer or against another player.\n"
-            + "The objective of this game is to place four of your chips in a \n"
-            + "line, either horizontally, vertically or diagonally.\n"
-            + "Good Luck! and enjoy this fun and challenging game.\n";
 
     public void getName() throws IOException {
 
@@ -33,11 +28,16 @@ public class Interfase {
     }
 
     public void displayGretting() throws IOException {
+        String welcomeGretting = "This is the fabulous game \"Four in a Line\".\n\n"
+                + "You will be playing against the computer or against another player.\n"
+                + "The objective of this game is to place four of your chips in a \n"
+                + "line, either horizontally, vertically or diagonally.\n"
+                + "Good Luck! and enjoy this fun and challenging game.\n";
 
         //JOptionPane.showMessageDialog(null, welcomeGretting, "Welcome " + playerName, JOptionPane.PLAIN_MESSAGE);
         System.out.println("\nWelcome "
                 + this.playerName + "!\n");        //Welcome Message
-        System.out.println(this.welcomeGretting);
+        System.out.println(welcomeGretting);
 
         Sound.chooseMusic(playerName);
     }

@@ -22,7 +22,6 @@ public class Game implements java.io.Serializable {
     private int gamesWonB   = 0;
     private int tieCounter  = 0;
     
-
     String choose = null;
     String invalidEntry = "Wrong Entry, Please try again.\n";
 
