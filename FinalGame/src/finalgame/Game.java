@@ -23,7 +23,7 @@ public class Game implements java.io.Serializable {
     private int tieCounter  = 0;
     
     String choose = null;
-    String invalidEntry = "Wrong Entry, Please try again.\n";
+    //String invalidEntry = "Wrong Entry, Please try again.\n";
 
     boolean valid = true;
 
@@ -60,12 +60,12 @@ public class Game implements java.io.Serializable {
             if (checkWinner(f) != null) {
                 switch (checkWinner(f)) {
                     case "R":
-                        System.out.println("The RED player won.\n\n");
+                        System.out.println(Message.RED_WON.getValue());
                         gamesWonR++;
                         Sound.stopMusic();
                         break;
                     case "B":
-                        System.out.println("The BLUE player won.\n\n");
+                        System.out.println(Message.BLUE_WON.getValue());
                         gamesWonB++;
                         Sound.stopMusic();
                         break;
@@ -76,19 +76,18 @@ public class Game implements java.io.Serializable {
                 while (valid) {
                     //user entry
                     Scanner input = new Scanner(System.in);
-                    System.out.println("Do you want to play another game?");
-                    System.out.println("1. Yes\t2 .No");
+                    System.out.println(Message.GAME_OVER.getValue());
                     choose = input.nextLine();
 
                     //validating user entry
                     if (choose == null || choose.length() < 1) {
-                        System.out.println(invalidEntry);
+                        System.out.println(Message.INVALID_ENTRY.getValue());
                     } else {
                         if (choose.equals("1") || choose.equals("2")) {
                             break;
                         } else {
 
-                            System.out.println(invalidEntry);
+                            System.out.println(Message.INVALID_ENTRY.getValue());
                         }
                     }
                 }
@@ -109,54 +108,6 @@ public class Game implements java.io.Serializable {
                 }
             }
         }
-    }
-
-    public int getGamesPlayed() {
-        return gamesPlayed;
-    }
-
-    public void setGamesPlayed(int gamesPlayed) {
-        this.gamesPlayed = gamesPlayed;
-    }
-
-    public int getGamesWonR() {
-        return gamesWonR;
-    }
-
-    public void setGamesWonR(int gamesWonR) {
-        this.gamesWonR = gamesWonR;
-    }
-
-    public int getGamesWonB() {
-        return gamesWonB;
-    }
-
-    public void setGamesWonB(int gamesWonB) {
-        this.gamesWonB = gamesWonB;
-    }
-
-    public int getTieCounter() {
-        return tieCounter;
-    }
-
-    public void setTieCounter(int tieCounter) {
-        this.tieCounter = tieCounter;
-    }
-
-    public String getChoose() {
-        return choose;
-    }
-
-    public void setChoose(String choose) {
-        this.choose = choose;
-    }
-
-    public String getInvalidEntry() {
-        return invalidEntry;
-    }
-
-    public void setInvalidEntry(String invalidEntry) {
-        this.invalidEntry = invalidEntry;
     }
 
     public static void main(String[] args) throws IOException {
