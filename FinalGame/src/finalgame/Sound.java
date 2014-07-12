@@ -39,9 +39,7 @@ public class Sound {
         while (true) {
             // prompt for input
             Scanner input = new Scanner(System.in);
-            System.out.println("\n" + jugador
-                    + ", do you want to hear music while playing this game? "
-                    + "\nPlease, press Y or N to continue.");
+            System.out.println("\n" + jugador + Message.CHOSE_MUSIC.getValue());
             flagMusic = input.nextLine(); //assing the input to variable
 
             // no input entered?

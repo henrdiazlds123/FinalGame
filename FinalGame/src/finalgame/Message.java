@@ -20,7 +20,9 @@ public enum Message {
                 + "line, either horizontally, vertically or diagonally.\n"
                 + "Good Luck! and enjoy this fun and challenging game.\n"),
     GAME_OVER ("Do you want to play another game?\n"
-                + "1. Yes\t2 .No");
+                + "1. Yes\t2 .No"),
+    CHOSE_MUSIC (", do you want to hear music while playing this game? "
+                    + "\nPlease, press Y or N to continue.");
     
     private final String value;
 
