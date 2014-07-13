@@ -18,10 +18,10 @@ import java.util.Scanner;
 public class Game implements java.io.Serializable {
 
     private int gamesPlayed = 0;
-    private int gamesWonR = 0;
-    private int gamesWonB = 0;
-    private int tieCounter = 0;
-
+    private int gamesWonR   = 0;
+    private int gamesWonB   = 0;
+    private int tieCounter  = 0;
+    
     String choose = null;
     //String invalidEntry = "Wrong Entry, Please try again.\n";
 
@@ -32,28 +32,29 @@ public class Game implements java.io.Serializable {
         String[][] f = createPattern();
 
         boolean loop = true;
-        int count = 0;
-
+           int count = 0;
+        
         printPattern(f);
-
+        
         while (loop) {
 
             if (count % 2 == 0) {
-                Player.PlayerMove("RED", "R", f);
+                Player.PlayerMove("RED","R",f);             
             } else {
-                Player.PlayerMove("BLUE", "B", f);
+                Player.PlayerMove("BLUE","B",f);             
             }
             count++;                 //game counter
-
+            
             /*Tie Game tester
-             if(count == 42){
-             if(checkWinner(f) == null){
-             System.out.println("Game tie");
-             tieCounter++;
-             break;
-             }
+            if(count == 42){
+                if(checkWinner(f) == null){
+                    System.out.println("Game tie");
+                    tieCounter++;
+                    break;
+                }
 
-             }*/
+            }*/
+                
             printPattern(f);
 
             if (checkWinner(f) != null) {
@@ -71,20 +72,17 @@ public class Game implements java.io.Serializable {
                 }
                 //if someone won you need choose what to do.
                 gamesPlayed++;
-
+                
                 while (valid) {
                     //user entry
-                    try {
-                        Scanner input = new Scanner(System.in);
-                        System.out.println(Message.GAME_OVER.getValue());
-                        choose = input.nextLine();
-                    } catch (IndexOutOfBoundsException | NumberFormatException ex) {
+                    Scanner input = new Scanner(System.in);
+                    System.out.println(Message.GAME_OVER.getValue());
+                    choose = input.nextLine();
+
                     //validating user entry
-                        //if (choose == null || choose.length() < 1) {
+                    if (choose == null || choose.length() < 1) {
                         System.out.println(Message.INVALID_ENTRY.getValue());
-                    } //} 
-                    //else {
-                    finally {
+                    } else {
                         if (choose.equals("1") || choose.equals("2")) {
                             break;
                         } else {
@@ -98,7 +96,7 @@ public class Game implements java.io.Serializable {
                 switch (choose) {
                     case "1":
                         BoardView.clearBoard();
-
+                        
                         //option 2  
                         break;
                     case "2":

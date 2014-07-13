@@ -20,7 +20,7 @@ public class Interfase {
 
         //playerName = JOptionPane.showInputDialog(null,"Enter your name to start playing", "User Name", JOptionPane.QUESTION_MESSAGE); 
         Scanner inputName = new Scanner(System.in);
-        System.out.println("Enter your name: ");    //Pregunta el nombre del jugador
+        System.out.println("Enter your name: ");//Pregunta el nombre del jugador
         this.playerName = inputName.nextLine();     //Asigna la entrada a la variable playerName*/
 
         //Ejecuta la siguiente instruccion.

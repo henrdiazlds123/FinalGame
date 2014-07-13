@@ -18,7 +18,6 @@ public class Sound {
     public static AudioClip CHIP     = Applet.newAudioClip(Sound.class.getResource("ball.wav"));
     public static AudioClip GAMEOVER = Applet.newAudioClip(Sound.class.getResource("gameover.wav"));
     public static AudioClip BACK     = Applet.newAudioClip(Sound.class.getResource("back.wav"));
-
     //public static AudioClip WRONG = Applet.newAudioClip(Sound.class.getResource("wrong.wav"));
 
     public static void playMusic() {
