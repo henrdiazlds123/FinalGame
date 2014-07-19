@@ -22,7 +22,11 @@ public enum Message {
     GAME_OVER ("Do you want to play another game?\n"
                 + "1. Yes\t2 .No"),
     CHOSE_MUSIC (", do you want to hear music while playing this game? "
-                    + "\nPlease, press Y or N to continue.");
+                    + "\nPlease, press Y or N to continue."),
+    GAME_RULES (", Estas son las reglas a seguir"),
+    ABOUT_US (", Estos son los creadores del juego."),
+    HOW_PLAY ("");
+    
     
     private final String value;
 

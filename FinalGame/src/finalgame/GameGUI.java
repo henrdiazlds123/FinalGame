@@ -7,8 +7,6 @@ package finalgame;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 public final class GameGUI {
@@ -18,15 +16,7 @@ public final class GameGUI {
     private JFrame howtoFrame;
     private JFrame rulesFrame;
     private JFrame aboutFrame;
-
-    int gamesPlayed;
-    int gamesWon;
-    int gamesLost;
-    int gamesTies;
-
-    double gamePercent;
-
-    String lblStatics;
+    
     String playerName;
     String flagMusic;
     String upperInput;
@@ -42,11 +32,13 @@ public final class GameGUI {
 
     public void getName() throws IOException {
         //Player Name input window
-        while (true){
-        playerName = JOptionPane.showInputDialog(null, "Enter your name to start playing", "User Name",
-                JOptionPane.QUESTION_MESSAGE);
-        if (playerName == null || playerName.length() < 1) {
-        } else break;
+        while (true) {
+            playerName = JOptionPane.showInputDialog(null, "Enter your name to start playing", "User Name",
+                    JOptionPane.QUESTION_MESSAGE);
+            if (playerName == null || playerName.length() < 1) {
+            } else {
+                break;
+            }
         }
         //Ejecuta la siguiente instruccion.
         displayGretting();
@@ -61,7 +53,6 @@ public final class GameGUI {
         prepareGUI();
     }//end displayGretting
 
-
     private void prepareGUI() {
         mainFrame = new JFrame("Connect Four - CIT260");
         mainFrame.setSize(600, 400);
@@ -71,19 +62,18 @@ public final class GameGUI {
         mainFrame.setLocationRelativeTo(null);      //en el centro del monitor
         mainFrame.setResizable(false);
 
-        /*
-         howtoFrame = new JFrame("Connect Four - How to Play");  //Titulo
-         howtoFrame.setSize(300, 300);
-         howtoFrame.setLocationRelativeTo(null);
+        howtoFrame = new JFrame("Connect Four - How to Play");  //Titulo
+        howtoFrame.setSize(300, 300);
+        howtoFrame.setLocationRelativeTo(null);
 
-         rulesFrame = new JFrame("Connect Four - Game Rules");   //Titulo
-         rulesFrame.setSize(300, 300);
-         rulesFrame.setLocationRelativeTo(null);
+        rulesFrame = new JFrame("Connect Four - Game Rules");   //Titulo
+        rulesFrame.setSize(300, 300);
+        rulesFrame.setLocationRelativeTo(null);
 
-         aboutFrame = new JFrame("Connect Four - About Us");     //Titulo
-         aboutFrame.setSize(300, 300);
-         aboutFrame.setLocationRelativeTo(null);
-         */
+        aboutFrame = new JFrame("Connect Four - About Us");     //Titulo
+        aboutFrame.setSize(300, 300);
+        aboutFrame.setLocationRelativeTo(null);
+
     }//end prpareGUI
 
     private void showMenu() throws InterruptedException {
@@ -91,19 +81,19 @@ public final class GameGUI {
         JMenuBar menuBar = new JMenuBar();
 
         //create menus
-        JMenu fileMenu      = new JMenu("File");
-        JMenu helpMenu      = new JMenu("Help");
-        JMenu optionsMenu   = new JMenu("Options");
+        JMenu fileMenu = new JMenu("File");
+        JMenu helpMenu = new JMenu("Help");
+        JMenu optionsMenu = new JMenu("Options");
 
         //create menu items
-        JMenuItem newMenuItem       = new JMenuItem("New game");
-        JMenuItem staticsMenuItem   = new JMenuItem("Show Staticts");
-        JMenuItem exitMenuItem      = new JMenuItem("Exit");
-        JMenuItem howMenuItem       = new JMenuItem("How to Play");
-        JMenuItem rulesMenuItem     = new JMenuItem("Game rules");
-        JMenuItem aboutMenuItem     = new JMenuItem("About");
-        JMenuItem musicOnItem       = new JMenuItem("Sound On");
-        JMenuItem musicOffItem      = new JMenuItem("Sound Off");
+        JMenuItem newMenuItem = new JMenuItem("New game");
+        JMenuItem staticsMenuItem = new JMenuItem("Show Staticts");
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
+        JMenuItem howMenuItem = new JMenuItem("How to Play");
+        JMenuItem rulesMenuItem = new JMenuItem("Game rules");
+        JMenuItem aboutMenuItem = new JMenuItem("About");
+        JMenuItem musicOnItem = new JMenuItem("Sound On");
+        JMenuItem musicOffItem = new JMenuItem("Sound Off");
 
         //add menu items to menu);
         fileMenu.add(newMenuItem);
@@ -114,12 +104,19 @@ public final class GameGUI {
         helpMenu.add(rulesMenuItem);
         helpMenu.addSeparator();
         helpMenu.add(aboutMenuItem);
-        if (!musicStatus) optionsMenu.add(musicOnItem);
-        else optionsMenu.remove(musicOffItem);
-        
-        if (musicStatus) optionsMenu.add(musicOffItem);
-        else optionsMenu.remove(musicOffItem);
-        
+
+        //if (!musicStatus) {
+            optionsMenu.add(musicOnItem);
+        /*} else {
+            optionsMenu.remove(musicOnItem);
+        }
+
+        if (musicStatus) {*/
+            optionsMenu.add(musicOffItem);
+        /*} else {
+            optionsMenu.remove(musicOffItem);
+        }*/
+
         //add menu to menubar
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
@@ -131,7 +128,8 @@ public final class GameGUI {
 
         //add actions to show windows
         staticsMenuItem.addActionListener((ActionEvent e) -> {
-            computeScore();
+            Score score = new Score();
+            score.computeScore(playerName);
         });
 
         rulesMenuItem.addActionListener((ActionEvent e) -> {
@@ -146,39 +144,26 @@ public final class GameGUI {
             aboutMenu();
         });
 
+        musicOnItem.addActionListener((ActionEvent e) -> {
+            Sound.BACK.loop();
+            musicStatus = true;
+        });
+
+        musicOffItem.addActionListener((ActionEvent e) -> {
+            Sound.BACK.stop();
+            musicStatus = false;
+        });
+
     }//end showMenu
 
-    public void computeScore() {
-        gamesWon    = 4;
-        gamesLost   = 0;
-        gamesTies   = 0;
-        gamesPlayed = gamesWon + gamesLost + gamesTies;
-
-        if (gamesPlayed == 0) {
-            JOptionPane.showMessageDialog(null, playerName + ", You Need to play first.", "Game Statics for "
-                    + playerName, JOptionPane.PLAIN_MESSAGE);
-        } else {
-            gamePercent = (double) (gamesWon) * 100 / (gamesPlayed);
-            gamePercent = Math.round(gamePercent * 100) / 100.0d;    //Redondea a dos decimales
-            lblStatics = "Games Played: " + gamesPlayed
-                    + "\nGames Won: " + gamesWon
-                    + "\nGames Lost: " + gamesLost
-                    + "\nGames Ties: " + gamesTies
-                    + "\nPercent: " + gamePercent + "%";
-
-            JOptionPane.showMessageDialog(null, lblStatics, "Game Statics for "
-                    + playerName, JOptionPane.PLAIN_MESSAGE);
-        }
-    }//end computeScore
-
     public void howToHelpMenu() {
-        JOptionPane.showMessageDialog(null, playerName + ", You Need to play first.", "COMO JUGAR ",
+        JOptionPane.showMessageDialog(null, playerName + Message.HOW_PLAY.getValue(), "COMO JUGAR ",
                 JOptionPane.PLAIN_MESSAGE);
 
     }//end howToHelpMenu
 
     public void gameRulesMenu() {
-        JOptionPane.showMessageDialog(null, playerName + ", Estas son las reglas a seguir", "Reglas del Juego",
+        JOptionPane.showMessageDialog(null, playerName + Message.GAME_RULES.getValue(), "Reglas del Juego",
                 JOptionPane.INFORMATION_MESSAGE);
 
     }//end gameRulesMenu
@@ -188,7 +173,6 @@ public final class GameGUI {
                 JOptionPane.PLAIN_MESSAGE);
 
     }//end aboutMenu
-
 
     public static void main(String[] args) throws IOException, InterruptedException {
         GameGUI iniciar = new GameGUI();
