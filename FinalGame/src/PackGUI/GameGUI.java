@@ -1,9 +1,12 @@
-package finalgame;
+package PackGUI;
 
 /**
  *
  * @author Henry J. DIAZ
  */
+import finalgame.Message;
+import finalgame.Score;
+import finalgame.Sound;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
