@@ -58,7 +58,7 @@ public class BoardView {
                 }
             }
         }
-        //System.out.println("\n\n");
-        //new Game();       
+        System.out.println("\n\n");
+        new Game();       
     }
 }
