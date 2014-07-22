@@ -22,12 +22,18 @@ public enum Message {
     GAME_OVER ("Do you want to play another game?\n"
                 + "1. Yes\t2 .No"),
     CHOSE_MUSIC (", do you want to hear music while playing this game? "
-                    + "\nPlease, press Y or N to continue."),
-    GAME_RULES ("YYYYEstas son las reglas a seguir"),
-    ABOUT_US ("YYYEstos son los creadores del juego.\n"
-                + "GUI Designer - Karla Lugo\n"
-                + "CODER - Piedad Ficklin\n"
-                + "DEBBUGER - Henry Diaz"),
+                + "\nPlease, press Y or N to continue."),
+    GAME_RULES ("The rules for connect-four are simple. The game is played \n"
+            + "on an upright seven column board. Each column has six spots. \n"
+            + "Two players play by alternately dropping a chip down one of \n"
+            + "the columns. The chip drops to the lowest unoccupied spot in \n"
+            + "that column. The first player to get four chips in a row, \n"
+            + "either vertical, horizontal, or diagonal, wins. The game ends \n"
+            + "in a stalemate if it fills before someone wins."),
+    ABOUT_US ("GAME CREATORS.\n"
+                + "\t\t\tGUI Designer - Karla Lugo\n"
+                + "\t\t\tCODER - Piedad Ficklin\n"
+                + "\t\t\tDEBBUGER - Henry Diaz"),
     HOW_PLAY ("To win Connect Four you must be the first player\n "
             + "to get four of your colored checkers in a row\n "
             + "either horizontally, vertically or diagonally.\n"

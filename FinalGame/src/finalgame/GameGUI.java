@@ -169,7 +169,7 @@ public final class GameGUI {
     }//end gameRulesMenu
 
     public void aboutMenu() {
-        JOptionPane.showMessageDialog(null, "Estos son los creadores del juego.", "ABOUT US ",
+        JOptionPane.showMessageDialog(null, Message.ABOUT_US.getValue(), "ABOUT US ",
                 JOptionPane.PLAIN_MESSAGE);
 
     }//end aboutMenu
