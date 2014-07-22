@@ -23,9 +23,20 @@ public enum Message {
                 + "1. Yes\t2 .No"),
     CHOSE_MUSIC (", do you want to hear music while playing this game? "
                     + "\nPlease, press Y or N to continue."),
-    GAME_RULES (", Estas son las reglas a seguir"),
-    ABOUT_US (", Estos son los creadores del juego."),
-    HOW_PLAY ("");
+    GAME_RULES ("YYYYEstas son las reglas a seguir"),
+    ABOUT_US ("YYYEstos son los creadores del juego.\n"
+                + "GUI Designer - Karla Lugo\n"
+                + "CODER - Piedad Ficklin\n"
+                + "DEBBUGER - Henry Diaz"),
+    HOW_PLAY ("To win Connect Four you must be the first player\n "
+            + "to get four of your colored checkers in a row\n "
+            + "either horizontally, vertically or diagonally.\n"
+            + "To play the game each player must take a turn placing\n "
+            + "their checkers. Go ahead and place your checker, then\n "
+            + "it is the other player's turn.\n"
+            + "The player must place the checker choosing a place\n "
+            + "on the board from 1 to 7."
+    );
     
     
     private final String value;

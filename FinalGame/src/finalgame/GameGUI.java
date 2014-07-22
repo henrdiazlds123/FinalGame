@@ -157,19 +157,19 @@ public final class GameGUI {
     }//end showMenu
 
     public void howToHelpMenu() {
-        JOptionPane.showMessageDialog(null, playerName + Message.HOW_PLAY.getValue(), "COMO JUGAR ",
+        JOptionPane.showMessageDialog(null, Message.HOW_PLAY.getValue(), "HOW TO PLAY ",
                 JOptionPane.PLAIN_MESSAGE);
 
     }//end howToHelpMenu
 
     public void gameRulesMenu() {
-        JOptionPane.showMessageDialog(null, playerName + Message.GAME_RULES.getValue(), "Reglas del Juego",
+        JOptionPane.showMessageDialog(null, Message.GAME_RULES.getValue(), "GAME RULES",
                 JOptionPane.INFORMATION_MESSAGE);
 
     }//end gameRulesMenu
 
     public void aboutMenu() {
-        JOptionPane.showMessageDialog(null, playerName + ", Estos son los creadores del juego.", "ABOUT US ",
+        JOptionPane.showMessageDialog(null, "Estos son los creadores del juego.", "ABOUT US ",
                 JOptionPane.PLAIN_MESSAGE);
 
     }//end aboutMenu
